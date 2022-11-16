@@ -8,7 +8,7 @@ import { FeedBtn } from "../button/";
 import "./addComment.scss"
 
 export const AddComment = () => {
-  const { comments, feedbackList, setFeedbackList, commetRef } = useContext(AppContext);
+  const { feedbackList, setFeedbackList, commetRef } = useContext(AppContext);
   const { login } = useContext(AuthContext)
 
   const { id } = useParams();
@@ -26,7 +26,7 @@ export const AddComment = () => {
     }
 
     const newFeed = feedbackList.map(item => {
-      if (item.id == +id) {
+      if (item.id === +id) {
         item.comments = [
           ...item.comments, newComment
         ]
