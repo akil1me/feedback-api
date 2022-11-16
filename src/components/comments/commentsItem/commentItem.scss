@@ -1,0 +1,47 @@
+.comment-item {
+  &__name {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.194444px;
+    color: #3A4374;
+  }
+
+  &__username {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #647196;
+  }
+
+  &__replay {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    color: #4661E6;
+  }
+
+  &__list {
+    border-left: 1px #8C92B3 solid;
+  }
+
+  &__comment {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: #647196;
+
+    &>span {
+      color: #AD1FEA;
+    }
+  }
+}
+
+.comment-item2 {
+  &:first-child {
+    margin-top: 20px;
+    padding-bottom: 0px;
+    border: none;
+    margin-bottom: 0;
+  }
+}

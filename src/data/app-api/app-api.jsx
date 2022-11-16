@@ -1,0 +1,1 @@
+export const APP_API = "http://167.235.158.238/feedbacks";

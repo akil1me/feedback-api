@@ -1,0 +1,23 @@
+.intro {
+  max-width: 290px;
+  padding: 62px 77px 24px 24px;
+  background-image: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
+  border-radius: 10px;
+
+  &__title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.25px;
+    color: #FFFFFF;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.75;
+  }
+}

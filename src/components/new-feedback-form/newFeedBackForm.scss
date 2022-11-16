@@ -1,0 +1,35 @@
+.new-feedback-from {
+  &__box {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    margin-bottom: 2px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.194444px;
+    color: #3A4374;
+  }
+
+  &__text {
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #647196;
+  }
+
+  &>select,
+  input,
+  textarea {
+    padding: 10px 24px !important;
+    background-color: #F7F8FD !important;
+  }
+
+  &__select {
+    padding: 10px 24px !important;
+    background-color: #F7F8FD !important;
+  }
+
+}

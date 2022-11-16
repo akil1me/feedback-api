@@ -1,0 +1,35 @@
+.feed-btn {
+  padding: 12px 24px;
+  background-color: #AD1FEA !important;
+  border-radius: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #C75AF6 !important;
+  }
+}
+
+.addBtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #F2F4FE;
+}
+
+.cancelBtn {
+  color: #F2F4FE;
+  background-color: #3A4374 !important;
+
+  &:hover {
+    background-color: #656EA3 !important;
+  }
+}
+
+.editBtn {
+  background-color: #4661E6 !important;
+
+  &:hover {
+    background-color: #7C91F9 !important;
+  }
+}

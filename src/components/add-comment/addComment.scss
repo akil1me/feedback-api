@@ -1,0 +1,40 @@
+.add-coment {
+
+  &__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.194444px;
+    color: #3A4374;
+    margin-bottom: 24px !important;
+  }
+
+  &__textarea {
+    padding: 16px 24px;
+    width: 100%;
+    height: 80px;
+    resize: vertical;
+    background-color: #F7F8FD;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 22px;
+      color: #8C92B3;
+    }
+  }
+
+  &__span {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #647196;
+  }
+}
+
+.logg {
+  z-index: 2 !important;
+}

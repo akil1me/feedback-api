@@ -1,0 +1,42 @@
+.addFeedbeck {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-radius: 10px;
+  background-color: #373F68 !important;
+
+
+  &__title {
+    margin-bottom: 0;
+    margin-left: 16px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.25px;
+    color: #FFFFFF;
+  }
+
+  &__span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F2F4FE;
+
+  }
+
+  &__select {
+    background-color: transparent !important;
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F2F4FE !important;
+    border: none !important;
+
+    & option {
+      color: #647196;
+    }
+
+  }
+}
