@@ -5,7 +5,7 @@ import { AuthContext } from "../../App";
 export const Login = () => {
   const navigate = useNavigate()
 
-  const { setLogin, login, emailRef, passwordRef, userRef } = useContext(AuthContext);
+  const { setLogin, emailRef, passwordRef, userRef } = useContext(AuthContext);
 
   const hendleLoginSubmit = (evt) => {
     evt.preventDefault();
