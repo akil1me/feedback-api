@@ -1,6 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
-
-import { APP_API } from "./data/app-api/app-api";
+import { createContext, useRef, useState } from "react";
 
 import Routers from "./routers/Routers";
 
@@ -25,15 +23,7 @@ export const App = () => {
   const passwordRef = useRef();
   const userRef = useRef();
 
-  useEffect(() => {
-    setLoading(true)
-    fetch(APP_API)
-      .then(res => res.json())
-      .then(data => setFeedbackList(data))
-      .finally(() => setLoading(false))
-  }, []);
-
-  const values = { feedbackList, setFeedbackList, inputRef, textAreaRef, selectRef, commetRef, loding };
+  const values = { feedbackList, setFeedbackList, inputRef, textAreaRef, selectRef, commetRef, loding, setLoading };
 
   return (
     <AuthContext.Provider value={{ login, setLogin, emailRef, passwordRef, userRef }}>

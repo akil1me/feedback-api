@@ -2,41 +2,56 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AppContext, AuthContext } from "../../App";
 
-import avatarDefault from "../../assets/img/avatar-default.svg"
+import { APP_API } from "../../data/app-api/app-api";
+import { DetailContext } from "../../pages/Detail/Detail";
 
 import { FeedBtn } from "../button/";
-import "./addComment.scss"
+import "./addComment.scss";
 
 export const AddComment = () => {
   const { feedbackList, setFeedbackList, commetRef } = useContext(AppContext);
   const { login } = useContext(AuthContext)
 
+  const { feedback } = useContext(DetailContext)
   const { id } = useParams();
+
+
+  const link = feedbackList.find(item => item.id === +id)
+
 
   const hendleSubmutCommet = (e) => {
     e.preventDefault();
 
+
     const newComment = {
       id: new Date().getTime(),
-      img: avatarDefault,
+      img: "http://cdn.onlinewebfonts.com/svg/img_264157.png",
       name: login.user,
       userName: login.email,
       title: commetRef.current.value,
-      ansver: [],
     }
 
-    const newFeed = feedbackList.map(item => {
-      if (item.id === +id) {
-        item.comments = [
-          ...item.comments, newComment
-        ]
+    const editedFeedback = {
+      ...link,
+      comments: [...link.comments, newComment],
+    }
+
+    const index = feedbackList.findIndex(item => item.id === +id)
+
+    fetch(APP_API + "/" + id, {
+      method: "PUT",
+      body: JSON.stringify(editedFeedback),
+      headers: {
+        "Content-type": "Application/json"
       }
-
-      return item
     })
+      .then(res => res.json())
+      .then(() => {
+        setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)])
+        commetRef.current.value = "";
+      })
 
-    setFeedbackList(newFeed);
-    commetRef.current.value = "";
+
   }
 
   return (
@@ -49,6 +64,7 @@ export const AddComment = () => {
               Add comment
             </Link>
           </div>
+
       }
 
 

@@ -1,36 +1,56 @@
 //  hooks
 import { useContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-//context
 import { AppContext } from "../../App";
 
 // compornets
-import { Comments, AddComment, Container, EditeFeedback, EditeFeedbackList } from "../../components/";
+import { AddComment, Comments, Container, EditeFeedback, EditeFeedbackList } from "../../components/";
+import Loader from "../../components/loader/Loader";
+import { APP_API } from "../../data/app-api/app-api";
 
-const Detail = () => {
+export const DetailContext = createContext()
 
-  const { feedbackList } = useContext(AppContext)
+export const Detail = () => {
+  const [feedback, setFeed] = useState();
 
   const { id } = useParams();
+  const { feedbackList } = useContext(AppContext)
 
-  const feedBackList = feedbackList.find(item => item.id === +id);
+  const feedbackFind = feedbackList.find(item => item.id === +id)
+
+  useEffect(() => {
+    fetch(APP_API + "/" + id)
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res);
+      })
+      .then(data => setFeed(data))
+      .catch(err => {
+        console.log(err);
+      })
+  }, [id])
+
+
 
   return (
-    <Container detailePage="container-2">
-      {
-        feedBackList ?
-          <>
-            <EditeFeedback />
-            <EditeFeedbackList feedBackList={feedBackList} />
-            <Comments feedBackList={feedBackList}  {...feedBackList} />
-            <AddComment />
-          </> :
-          <h3 className="text-center">404 page not found</h3>
-      }
+    <DetailContext.Provider value={{ feedback }}>
+      <Container detailePage="container-2">
 
-    </Container>
+        {
+          feedback ? <>
+            <EditeFeedback />
+            <EditeFeedbackList feedback={feedback} feedbackFind={feedbackFind} />
+            <Comments feedbackFind={feedbackFind} feedback={feedback} />
+            <AddComment />
+          </>
+            :
+            <Loader />
+        }
+      </Container>
+    </DetailContext.Provider>
   )
 }
 
-export default Detail;

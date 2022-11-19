@@ -2,13 +2,15 @@
 import { FeedbackItem } from "../main/feedback-list/feedback-item/FeedbackItem";
 
 
-export const EditeFeedbackList = ({ feedBackList }) => {
+export const EditeFeedbackList = ({ feedback, feedbackFind }) => {
 
 
   return (
     <>
       <ul className="list-unstyled">
-        <FeedbackItem  {...feedBackList} />
+        {
+          feedbackFind ? <FeedbackItem {...feedbackFind} /> : <FeedbackItem {...feedback} />
+        }
       </ul>
 
     </>

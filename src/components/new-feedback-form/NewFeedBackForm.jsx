@@ -1,26 +1,21 @@
 import { useContext } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { AppContext } from "../../App"
 import { FeedBtn } from "../button/"
 import "./newFeedBackForm.scss"
 
-export default function NewFeedBackForm({ defaultValueInput, defaultValueText, defaultValueSelect, onSubmit, hendleDeleteFeedback }) {
+export default function NewFeedBackForm({ defaultValueInput, defaultValueText, defaultValueSelect, onSubmit, hendleDeleteFeedback, ondelete }) {
   const { inputRef, textAreaRef, selectRef } = useContext(AppContext);
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-
-
   const hendleOnSubmit = (evt) => {
     evt.preventDefault();
     onSubmit(inputRef.current.value, textAreaRef.current.value, selectRef.current.value)
-    navigate("/")
   }
 
   const onDelete = () => {
     hendleDeleteFeedback()
-    navigate("/")
   }
 
   return (
@@ -71,7 +66,16 @@ export default function NewFeedBackForm({ defaultValueInput, defaultValueText, d
         {
           defaultValueInput &&
           <div>
-            <button className="new-feedback-from__btn btn btn-danger px-3" type="button" onClick={onDelete}>Delete</button>
+            <button
+              className="new-feedback-from__btn btn btn-danger px-3"
+              type="button"
+              onClick={onDelete} disabled={ondelete}>
+              Delete
+              {
+                ondelete ? <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span> : null
+
+              }
+            </button>
           </div>
         }
 

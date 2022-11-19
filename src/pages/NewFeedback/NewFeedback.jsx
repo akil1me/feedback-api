@@ -5,9 +5,13 @@ import NewFeedBackMain from "../../components/new-feedback-main/NewFeedBackMain"
 import newFeedBackImg from "../../assets/img/new-feedback.svg";
 import { useContext } from "react";
 import { AppContext } from "../../App";
+import { APP_API } from "../../data/app-api/app-api";
+import { useNavigate } from "react-router-dom";
 
 const NewFeedBack = () => {
-  const { feedbackList, setFeedbackList } = useContext(AppContext)
+  const { feedbackList, setFeedbackList } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const hendleFeedbackSubmit = (inputTitle, textValue, selectValue) => {
     const createNewFeedback = {
@@ -19,10 +23,25 @@ const NewFeedBack = () => {
       comments: [],
       status: "planned",
       isLiked: false,
+      commentsCount: 0,
     }
 
-    setFeedbackList([createNewFeedback, ...feedbackList])
+    fetch(APP_API, {
+      method: "POST",
+      body: JSON.stringify(createNewFeedback),
+      headers: {
+        "Content-type": "Application/json",
+      },
+
+    })
+      .then(res => res.json())
+      .then(() => {
+        return setFeedbackList([...feedbackList, createNewFeedback])
+      })
+    navigate("/")
+
   }
+
 
   return (
     <div className="mt-3">
