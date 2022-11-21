@@ -1,11 +1,14 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { useParams } from "react-router-dom"
 import { AppContext } from "../../App"
 import { FeedBtn } from "../button/"
 import "./newFeedBackForm.scss"
 
 export default function NewFeedBackForm({ defaultValueInput, defaultValueText, defaultValueSelect, onSubmit, hendleDeleteFeedback, ondelete }) {
-  const { inputRef, textAreaRef, selectRef } = useContext(AppContext);
+
+  const inputRef = useRef();
+  const textAreaRef = useRef();
+  const selectRef = useRef();
 
   const { id } = useParams();
 
@@ -72,8 +75,7 @@ export default function NewFeedBackForm({ defaultValueInput, defaultValueText, d
               onClick={onDelete} disabled={ondelete}>
               Delete
               {
-                ondelete ? <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span> : null
-
+                ondelete ? <span className="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span> : null
               }
             </button>
           </div>

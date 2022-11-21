@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import { AppContext, AuthContext } from "../../../App";
+import { useSelector } from "react-redux";
 import icon from "../../../assets/img/icon.svg";
 import { FeedBtn } from "../../button/";
 import "./addFeedback.scss";
 
 export const AddFeedback = () => {
-  const { feedbackList } = useContext(AppContext)
-  const { login } = useContext(AuthContext)
+  const { feedbackList } = useSelector(item => item.feedbacks)
+  const { login } = useSelector(item => item.login)
 
   return (
     <div className="addFeedbeck">

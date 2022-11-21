@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../App";
+import { loginActions } from "../../store/login/login.slice";
 
 export const Login = () => {
   const navigate = useNavigate()
 
-  const { setLogin, emailRef, passwordRef, userRef } = useContext(AuthContext);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const userRef = useRef();
+
+  const dispatch = useDispatch();
 
   const hendleLoginSubmit = (evt) => {
     evt.preventDefault();
@@ -16,7 +21,7 @@ export const Login = () => {
       passwordRef: passwordRef.current.value,
     }
 
-    setLogin(loginObj)
+    dispatch(loginActions.setLogin(loginObj));
 
     navigate("/");
   }

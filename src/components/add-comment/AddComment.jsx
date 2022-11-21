@@ -1,20 +1,22 @@
-import { useContext } from "react";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { AppContext, AuthContext } from "../../App";
 
 import { APP_API } from "../../data/app-api/app-api";
-import { DetailContext } from "../../pages/Detail/Detail";
+import { feedbacksActions } from "../../store/feedbacks/feedbacks.slice";
 
 import { FeedBtn } from "../button/";
 import "./addComment.scss";
 
 export const AddComment = () => {
-  const { feedbackList, setFeedbackList, commetRef } = useContext(AppContext);
-  const { login } = useContext(AuthContext)
+  const { feedbackList } = useSelector(item => item.feedbacks);
+  const dispatch = useDispatch()
 
-  const { feedback } = useContext(DetailContext)
+  const commetRef = useRef();
+
+  const { login } = useSelector(item => item.login)
+
   const { id } = useParams();
-
 
   const link = feedbackList.find(item => item.id === +id)
 
@@ -47,7 +49,7 @@ export const AddComment = () => {
     })
       .then(res => res.json())
       .then(() => {
-        setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)])
+        dispatch(feedbacksActions.setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)]))
         commetRef.current.value = "";
       })
 

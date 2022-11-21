@@ -1,15 +1,19 @@
-import { Container } from "../../components/container/Container"
-import GoBack from "../../components/go-back/GoBack"
+import { Container } from "../../components/container/Container";
+import GoBack from "../../components/go-back/GoBack";
 import NewFeedBackMain from "../../components/new-feedback-main/NewFeedBackMain";
 
-import newFeedBackImg from "../../assets/img/new-feedback.svg";
-import { useContext } from "react";
-import { AppContext } from "../../App";
-import { APP_API } from "../../data/app-api/app-api";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import newFeedBackImg from "../../assets/img/new-feedback.svg";
+import { APP_API } from "../../data/app-api/app-api";
+import { feedbacksActions } from "../../store/feedbacks/feedbacks.slice";
+
 const NewFeedBack = () => {
-  const { feedbackList, setFeedbackList } = useContext(AppContext);
+
+  const { feedbackList } = useSelector(item => item.feedbacks)
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -36,7 +40,7 @@ const NewFeedBack = () => {
     })
       .then(res => res.json())
       .then(() => {
-        return setFeedbackList([...feedbackList, createNewFeedback])
+        return dispatch(feedbacksActions.setFeedbackList([...feedbackList, createNewFeedback]))
       })
     navigate("/")
 

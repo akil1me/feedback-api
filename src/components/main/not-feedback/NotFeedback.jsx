@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { AuthContext } from "../../../App";
 import notFound from "../../../assets/img/not-found.png";
 import { FeedBtn } from "../../button";
@@ -6,7 +7,7 @@ import { FeedBtn } from "../../button";
 import "./not-feedback.scss";
 
 export function NotFeedback() {
-  const { login } = useContext(AuthContext)
+  const { login } = useSelector(item => item.login)
 
   return (
     <li className="not-feedback ">

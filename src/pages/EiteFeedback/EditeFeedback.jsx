@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../App";
+import { useEffect, useState } from "react";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container } from "../../components/container/Container";
@@ -7,16 +6,20 @@ import { Container } from "../../components/container/Container";
 // img
 import editeFeedBackImg from "../../assets/img/edite-feedback.svg";
 
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/loader/Loader";
 import NewFeedBackMain from "../../components/new-feedback-main/NewFeedBackMain";
 import { APP_API } from "../../data/app-api/app-api";
-import Loader from "../../components/loader/Loader";
+import { feedbacksActions } from "../../store/feedbacks/feedbacks.slice";
 
 
 export const EditeFeedBack = () => {
 
   const { id } = useParams();
 
-  const { feedbackList, setFeedbackList } = useContext(AppContext)
+  const { feedbackList } = useSelector(item => item.feedbacks)
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -67,10 +70,9 @@ export const EditeFeedBack = () => {
     })
       .then(res => res.json)
       .then(() => {
-        setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)])
+        dispatch(feedbacksActions.setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)]))
         navigate("/detail/" + id)
       })
-
   }
 
   const hendleDeleteFeedback = () => {
@@ -81,7 +83,7 @@ export const EditeFeedBack = () => {
       .then(res => res.json)
       .then(() => {
         const index = feedbackList.findIndex(item => item.id === +id);
-        setFeedbackList([...feedbackList.slice(0, index), ...feedbackList.slice(index + 1)])
+        dispatch(feedbacksActions.setFeedbackList([...feedbackList.slice(0, index), ...feedbackList.slice(index + 1)]))
         navigate("/")
       }).finally(() => setDelete(false))
   }

@@ -3,13 +3,15 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CommentsItem } from "../commentsItem/";
 
-import notfound from "../../../assets/img/not-found.png";
+import { useSelector } from "react-redux";
 import { DetailContext } from "../../../pages/Detail/Detail";
-import { AppContext } from "../../../App";
+
+import notfound from "../../../assets/img/not-found.png";
 
 export const CommentsList = () => {
   const { id } = useParams();
-  const { feedbackList } = useContext(AppContext)
+
+  const { feedbackList } = useSelector(item => item.feedbacks);
 
   const feedbackFind = feedbackList.find(item => item.id === +id)
 

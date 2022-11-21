@@ -1,8 +1,7 @@
 //  hooks
-import { useContext } from "react";
 import { createContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AppContext } from "../../App";
 
 // compornets
 import { AddComment, Comments, Container, EditeFeedback, EditeFeedbackList } from "../../components/";
@@ -12,10 +11,13 @@ import { APP_API } from "../../data/app-api/app-api";
 export const DetailContext = createContext()
 
 export const Detail = () => {
+
   const [feedback, setFeed] = useState();
 
   const { id } = useParams();
-  const { feedbackList } = useContext(AppContext)
+
+  const { feedbackList } = useSelector(item => item.feedbacks)
+
 
   const feedbackFind = feedbackList.find(item => item.id === +id)
 
@@ -32,8 +34,6 @@ export const Detail = () => {
         console.log(err);
       })
   }, [id])
-
-
 
   return (
     <DetailContext.Provider value={{ feedback }}>
