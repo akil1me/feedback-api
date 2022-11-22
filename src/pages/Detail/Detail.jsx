@@ -1,5 +1,5 @@
 //  hooks
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -7,8 +7,6 @@ import { useParams } from "react-router-dom";
 import { AddComment, Comments, Container, EditeFeedback, EditeFeedbackList } from "../../components/";
 import Loader from "../../components/loader/Loader";
 import { APP_API } from "../../data/app-api/app-api";
-
-export const DetailContext = createContext()
 
 export const Detail = () => {
 
@@ -36,7 +34,7 @@ export const Detail = () => {
   }, [id])
 
   return (
-    <DetailContext.Provider value={{ feedback }}>
+    <>
       <Container detailePage="container-2">
 
         {
@@ -50,7 +48,7 @@ export const Detail = () => {
             <Loader />
         }
       </Container>
-    </DetailContext.Provider>
+    </>
   )
 }
 

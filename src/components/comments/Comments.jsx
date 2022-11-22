@@ -8,7 +8,7 @@ export const Comments = ({ feedback, feedbackFind }) => {
       <div>
         <h2 className="comments__title">Comments: <span className="text-primary">{feedbackFind?.comments?.length || feedback?.comments?.length}</span></h2>
         {
-          <CommentsList />
+          <CommentsList feedback={feedback} />
 
         }
       </div>
