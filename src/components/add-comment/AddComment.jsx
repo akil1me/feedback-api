@@ -38,7 +38,6 @@ export const AddComment = () => {
       comments: [...link.comments, newComment],
     }
 
-    const index = feedbackList.findIndex(item => item.id === +id)
 
     fetch(APP_API + "/" + id, {
       method: "PUT",
@@ -49,11 +48,9 @@ export const AddComment = () => {
     })
       .then(res => res.json())
       .then(() => {
-        dispatch(feedbacksActions.setFeedbackList([...feedbackList.slice(0, index), editedFeedback, ...feedbackList.slice(index + 1)]))
+        dispatch(feedbacksActions.setAddComment(editedFeedback))
         commetRef.current.value = "";
       })
-
-
   }
 
   return (
