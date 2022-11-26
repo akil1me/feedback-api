@@ -1,11 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import icon from "../../../assets/img/icon.svg";
+import { feedbacksActions } from "../../../store/feedbacks/feedbacks.slice";
 import { FeedBtn } from "../../button/";
 import "./addFeedback.scss";
 
 export const AddFeedback = () => {
-  const { feedbackList } = useSelector(item => item.feedbacks)
-  const { login } = useSelector(item => item.login)
+  const { feedbackList } = useSelector(item => item.feedbacks);
+  const { login } = useSelector(item => item.login);
+
+  const dispatch = useDispatch();
+
+  const hendleSortSelect = (evt) => {
+    dispatch(feedbacksActions.setSortFeedback(evt.target.value))
+
+  }
 
   return (
     <div className="addFeedbeck">
@@ -18,7 +26,7 @@ export const AddFeedback = () => {
             <span className="addFeedbeck__span">Sort by :</span>
           </div>
           <div>
-            <select className="form-select addFeedbeck__select">
+            <select className="form-select addFeedbeck__select" onChange={hendleSortSelect}>
               <option value="most-upvotes">Most Upvotes</option>
               <option value="least-upvotes">Least Upvotes</option>
               <option value="most-comments">Most Comments</option>

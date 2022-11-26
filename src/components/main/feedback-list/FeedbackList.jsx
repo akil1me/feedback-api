@@ -9,7 +9,7 @@ import { NotFeedback } from "../not-feedback/NotFeedback";
 import { FeedbackItem } from "./feedback-item/FeedbackItem";
 
 export const FeedbackList = () => {
-  const { feedbackList, loading } = useSelector(item => item.feedbacks)
+  const { feedbackList, filter, loading } = useSelector(item => item.feedbacks)
 
   const dispatch = useDispatch();
 
@@ -23,12 +23,13 @@ export const FeedbackList = () => {
     }
   }, []);
 
+  // console.log(filter);
 
   return (
     <ul className="list-unstyled">
       {
-        !loading ? (feedbackList.length !== 0 ?
-          feedbackList?.map(item => <FeedbackItem {...item} key={item.id} />) :
+        !loading ? ((filter || feedbackList).length !== 0 ?
+          (filter || feedbackList)?.map(item => <FeedbackItem {...item} key={item.id} />) :
           <NotFeedback />) : <Loader />
       }
     </ul>

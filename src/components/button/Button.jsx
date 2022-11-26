@@ -1,9 +1,10 @@
 import "./button.scss"
 
-export const Button = (props) => {
+export const Button = ({ type, classs, ...props }) => {
+
   return (
-    <button className={`button ${props.classs}`} type="button">
-      {props.description}
+    <button className={`button ${classs}`} type="button" data-id={type}  {...props}>
+      {type}
     </button>
   )
 }

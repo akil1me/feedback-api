@@ -2,7 +2,7 @@ import "./roadmap.scss"
 
 export const Roadmap = () => {
   return (
-    <div className="roadmap">
+    <div className="roadmap mt-lg-3 mt-0">
       <div className="roadmap__top d-flex justify-content-between align-items-center">
         <h3 className="roadmap__title">
           Roadmap

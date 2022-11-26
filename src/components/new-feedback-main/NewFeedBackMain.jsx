@@ -1,7 +1,7 @@
 
-import "./newFeedBackMAin.scss"
+import "./newFeedBackMAin.scss";
 
-import NewFeedBackForm from "../new-feedback-form/NewFeedBackForm"
+import NewFeedBackForm from "../new-feedback-form/NewFeedBackForm";
 
 export default function NewFeedBackMain({ newFeedBackImg, editeFeedBackImg, title, link = {}, onSubmit, hendleDeleteFeedback, ondelete }) {
 

@@ -7,9 +7,19 @@ import "./siteBar.scss";
 export const SiteBar = () => {
   return (
     <>
-      <Intro />
-      <Category />
-      <Roadmap />
+      <div className="row mb-4 mb-lg-0">
+        <div className="col">
+          <Intro />
+        </div>
+
+        <div className="col">
+          <Category />
+        </div>
+
+        <div className="col">
+          <Roadmap />
+        </div>
+      </div>
     </>
   )
 }

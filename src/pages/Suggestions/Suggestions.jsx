@@ -7,11 +7,11 @@ const Suggestions = () => {
     <div className="home">
       <Container>
         <div className="row">
-          <div className="col-3">
+          <div className="col col-lg-3 col-12">
             <SiteBar />
           </div>
 
-          <div className="col-9">
+          <div className="col col-lg-9 col-12">
             <Main />
           </div>
         </div>

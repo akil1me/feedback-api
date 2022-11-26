@@ -40,9 +40,9 @@ const NewFeedBack = () => {
     })
       .then(res => res.json())
       .then(() => {
-        return dispatch(feedbacksActions.setFeedbackList([...feedbackList, createNewFeedback]))
+        dispatch(feedbacksActions.setFeedbackList([...feedbackList, createNewFeedback]))
+        navigate("/")
       })
-    navigate("/")
 
   }
 

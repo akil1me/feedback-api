@@ -21,12 +21,12 @@ export const FeedbackItem = (props) => {
           </button>
         </div>
 
-        <div className="col-11 p-0 d-flex justify-content-between align-items-center">
-          <div>
+        <div className=" col-11 p-0 d-flex justify-content-between align-items-center">
+          <div className="ms-3">
             <Link to={`/detail/${props.id}`} className="feed-item__title">{props.title}</Link>
             <p className="feed-item__description">{props.description}</p>
 
-            <Button description={props.type} />
+            <Button type={props.type} />
           </div>
 
           <div className="d-flex align-items-center">
