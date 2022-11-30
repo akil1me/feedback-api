@@ -23,7 +23,7 @@ export const FeedbackList = () => {
     }
   }, []);
 
-  // console.log(filter);
+  console.log(filter);
 
   return (
     <ul className="list-unstyled">

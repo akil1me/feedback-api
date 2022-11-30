@@ -19,7 +19,7 @@ export const AddFeedback = () => {
     <div className="addFeedbeck">
       <div className="addFeedbeck__left-content d-flex align-items-center">
         <img src={icon} alt="icon-me" width={23} height={24} />
-        <h4 className="addFeedbeck__title">{feedbackList.length} Suggestions</h4>
+        <h4 className="addFeedbeck__title">{feedbackList?.length} Suggestions</h4>
 
         <div className="d-flex ms-5 align-items-center">
           <div>
@@ -36,7 +36,7 @@ export const AddFeedback = () => {
         </div>
       </div>
 
-      <FeedBtn text="+ Add Feedback" classs="addBtn" link={login ? "/suggestions/new-feedback" : "/login"} />
+      <FeedBtn text="+ Add Feedback" classs="addBtn" link={login ? "/new-feedback" : "/login"} />
     </div>
   )
 }

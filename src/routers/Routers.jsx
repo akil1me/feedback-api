@@ -1,4 +1,5 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useRoutes } from "react-router-dom";
 import NotFound from "../components/not-found/NotFound";
 import { Detail } from "../pages/Detail/Detail";
 import { EditeFeedBack } from "../pages/EiteFeedback/EditeFeedback";
@@ -16,31 +17,10 @@ const routes = [
     path: "*",
     element: <NotFound />,
   },
+
   {
-    path: "/login",
-    children: [
-      {
-        path: "",
-        element: <Login />
-      },
-      {
-        path: "*",
-        element: <Navigate to="/login" />
-      },
-    ],
-  },
-  {
-    path: "/suggestions",
-    children: [
-      {
-        path: "",
-        element: <Suggestions />,
-      },
-      {
-        path: "new-feedback",
-        element: <NewFeedBack />,
-      }
-    ]
+    path: "new-feedback",
+    element: <NewFeedBack />,
   },
 
   {
@@ -59,8 +39,17 @@ const routes = [
   }
 ]
 
+const loginRout = [
+  {
+    path: "/login",
+    element: <Login />,
+  }
+]
+
 const Routers = () => {
-  const elements = useRoutes(routes);
+  const { login } = useSelector(item => item.login);
+
+  const elements = useRoutes([...(!login ? loginRout : []), ...routes]);
 
   return elements;
 }

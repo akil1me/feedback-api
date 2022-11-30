@@ -24,10 +24,13 @@ export const EditeFeedBack = () => {
   const navigate = useNavigate();
 
   const [feedback, setFeed] = useState();
-  const [ondelete, setDelete] = useState(false)
+  const [ondelete, setDelete] = useState(false);
+
+  const link = feedbackList.find(data => data.id === +id);
+  console.log(link);
 
   useEffect(() => {
-    if (!feedback) {
+    if (!link) {
       fetch(APP_API + "/" + id)
         .then(res => {
           if (res.status === 200) {
@@ -42,9 +45,6 @@ export const EditeFeedBack = () => {
 
     }
   }, [id])
-
-
-  const link = feedbackList.find(data => data.id === +id);
 
   const hendleFeedbackSubmit = (inputTitle, textValue, selectValue) => {
     const editedFeedback = {
@@ -87,14 +87,14 @@ export const EditeFeedBack = () => {
   }
 
   return (
-    feedback ? <div className="mt-3">
+    (feedback || link) ? <div className="mt-3">
       <Container newFeedBack="container-3">
         <Link to={`/detail/${id}`}>{"< Go Back"}</Link>
 
         <NewFeedBackMain
           editeFeedBackImg={editeFeedBackImg}
-          title={`Editing '${feedback.title}'`}
-          link={feedback}
+          title={`Editing '${feedback?.title || link?.title}'`}
+          link={feedback || link}
           onSubmit={hendleFeedbackSubmit}
           hendleDeleteFeedback={hendleDeleteFeedback}
           ondelete={ondelete}
